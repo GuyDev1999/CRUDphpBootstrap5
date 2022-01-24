@@ -91,23 +91,29 @@ require_once 'config/db.php';
                 </tr>
             </thead>
             <tbody>
+                <?php
+                    $stmt = $conn->query("SELECT * FROM users");
+                    $stmt->execute();
+                    $users = $stmt->fetchAll();
+
+                    if (!$users) {
+                        echo "<tr><td colspan='6' class='text-center'>No users found</td></tr>";
+                    } else {
+                        foreach ($users as $user) {
+                ?>
                 <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                    <th scope="row"><?=$user['id'];?></th>
+                    <th><?=$user['firstname'];?></th>
+                    <th><?=$user['lastname'];?></th>
+                    <th><?=$user['position'];?></th>
+                    <th width="250px"><img width="50%" src="uploads/<?=$user['img']; ?>" class="rounded"></th>
+                    <td>
+                        <a href="edit.php?id=<?=$user['id']; ?>" class="btn btn-warning">Edit</a>
+                        <a href="?delete<?=$user['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                    </td>
                 </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                </tr>
+                <?php } 
+                } ?>
             </tbody>
         </table>
     </div>
