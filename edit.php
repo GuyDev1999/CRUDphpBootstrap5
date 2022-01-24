@@ -1,6 +1,6 @@
 <?php 
-session_start();
-require_once 'config/db.php'; 
+    session_start();
+    require_once 'config/db.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ require_once 'config/db.php';
     <div class="container mt-5">
         <h1>Edit Data</h1>
         <hr>
-        <form action="insert.php" method="post" enctype="multipart/form-data">
+        <form action="edit.php" method="post" enctype="multipart/form-data">
             <?php 
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
@@ -54,8 +54,8 @@ require_once 'config/db.php';
                 <img width="100%" src="uploads/<?=$data['img']; ?>" id="previewImg" alt="">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                <a class="btn btn-secondary" href="index.php">Go Back</a>
+                <button type="submit" name="update" class="btn btn-success">Update</button>
             </div>
         </form>
         <!-- Users Data -->
