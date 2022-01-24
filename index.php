@@ -1,4 +1,7 @@
-<?php require_once 'config/db.php'; ?>
+<?php 
+session_start();
+require_once 'config/db.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +60,23 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">Add User</button>
             </div>
         </div>
+        <hr>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success">
+                <?php
+                    echo $_SESSION['success'];
+                    unset ($_SESSION['success']);
+                ?>
+            </div>
+        <?php } ?>
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger">
+                <?php
+                    echo $_SESSION['error'];
+                    unset ($_SESSION['error']);
+                ?>
+            </div>
+        <?php } ?>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
