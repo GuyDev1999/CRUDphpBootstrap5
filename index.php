@@ -83,9 +83,11 @@ require_once 'config/db.php';
             <thead>
                 <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Position</th>
+                <th scope="col">Img</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
