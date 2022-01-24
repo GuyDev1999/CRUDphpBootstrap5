@@ -28,14 +28,19 @@
                     <input type="text" required class="form-control" name="lastname">
                 </div>
                 <div class="mb-3">
-                    <label for="lastname" class="col-form-label">Last Name:</label>
-                    <input type="text" required class="form-control" name="lastname">
+                    <label for="position" class="col-form-label">Position:</label>
+                    <input type="text" required class="form-control" name="position">
+                </div>
+                <div class="mb-3">
+                    <label for="img" class="col-form-label">Image:</label>
+                    <input type="file" required class="form-control" id="imgInput" name="img">
+                    <img id="previewImg" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
         </div>
         </div>
     </div>
