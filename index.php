@@ -106,7 +106,7 @@ require_once 'config/db.php';
                     <th><?=$user['firstname'];?></th>
                     <th><?=$user['lastname'];?></th>
                     <th><?=$user['position'];?></th>
-                    <th width="250px"><img width="50%" src="uploads/<?=$user['img']; ?>" class="rounded"></th>
+                    <th width="250px"><img width="75%"src="uploads/<?=$user['img']; ?>" class="rounded"></th>
                     <td>
                         <a href="edit.php?id=<?=$user['id']; ?>" class="btn btn-warning">Edit</a>
                         <a href="?delete<?=$user['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
