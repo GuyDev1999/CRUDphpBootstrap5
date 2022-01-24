@@ -19,7 +19,37 @@ require_once 'config/db.php';
     <div class="container mt-5">
         <h1>Edit Data</h1>
         <hr>
-
+        <form action="insert.php" method="post" enctype="multipart/form-data">
+            <?php 
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $stmt = $conn->query("SELECT * FROM users WHERE id = $id");
+                    $stmt->execute();
+                    $data = $stmt->fetch();
+                }
+            ?>
+            <div class="mb-3">
+                <label for="firstname" class="col-form-label">First Name:</label>
+                <input type="text" required class="form-control" name="firstname">
+            </div>
+            <div class="mb-3">
+                <label for="lastname" class="col-form-label">Last Name:</label>
+                <input type="text" required class="form-control" name="lastname">
+            </div>
+            <div class="mb-3">
+                <label for="position" class="col-form-label">Position:</label>
+                <input type="text" required class="form-control" name="position">
+            </div>
+            <div class="mb-3">
+                <label for="img" class="col-form-label">Image:</label>
+                <input type="file" required class="form-control" id="imgInput" name="img">
+                <img width="100%" id="previewImg" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
         <!-- Users Data -->
     </div>
 
