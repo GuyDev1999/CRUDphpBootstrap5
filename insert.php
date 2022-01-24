@@ -11,7 +11,7 @@
 
         $allow = array('jpg', 'jpeg', 'png');
         $extension = explode(".", $img['name']);  // แยกชื่อกับจุดออก
-        $filActExt = strtolower(end($extension)); // แปลงนามสกุล file ให้เป็นตัวเล็ก
+        $fileActExt = strtolower(end($extension)); // แปลงนามสกุล file ให้เป็นตัวเล็ก
         $fileNew = rand() . "." . $fileActExt; // Random ชื่อ file 
         $filePath = "uploads/".$fileNew;
 
