@@ -34,7 +34,7 @@
                 <div class="mb-3">
                     <label for="img" class="col-form-label">Image:</label>
                     <input type="file" required class="form-control" id="imgInput" name="img">
-                    <img id="previewImg" alt="">
+                    <img width="100%" id="previewImg" alt="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -58,5 +58,16 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        let imgInput = document.getElementById('imgInput');
+        let previewImg = document.getElementById('previewImg');
+
+        imgInput.onchange = evt => {
+            const [file] = imgInput.files;
+            if (file) {
+                previewImg.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
 </body>
 </html>
