@@ -1,6 +1,18 @@
 <?php 
-session_start();
-require_once 'config/db.php'; 
+    session_start();
+    require_once 'config/db.php';
+    
+    if (isset($_GET['delete'])) {
+        $delete_id = $_GET['delete'];
+        $deletestmt = $conn->query("DELETE FROM users WHERE id = $delete_id");
+        $deletestmt->execute();
+
+        if ($deletestmt) {
+            echo "<script>alert('Data has been deleted successfully');</script>";
+            $_SESSION['success'] = "Data has been deleted successfully";
+            header("refresh:1; url=index.php");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +121,7 @@ require_once 'config/db.php';
                     <th width="250px"><img width="75%"src="uploads/<?=$user['img']; ?>" class="rounded"></th>
                     <td>
                         <a href="edit.php?id=<?=$user['id']; ?>" class="btn btn-warning">Edit</a>
-                        <a href="?delete<?=$user['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                        <a href="?delete=<?=$user['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?');">Delete</a>
                     </td>
                 </tr>
                 <?php } 
