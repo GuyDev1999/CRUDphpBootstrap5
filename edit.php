@@ -35,8 +35,10 @@ require_once 'config/db.php';
                 }
             ?>
             <div class="mb-3">
+                <input type="text" readonly value="<?= $data['id']; ?>" required class="form-control" name="id">
                 <label for="firstname" class="col-form-label">First Name:</label>
                 <input type="text" value="<?= $data['firstname']; ?>" required class="form-control" name="firstname">
+                <input type="hidden" value="<?= $data['img']; ?>" required class="form-control" name="img2">
             </div>
             <div class="mb-3">
                 <label for="lastname" class="col-form-label">Last Name:</label>
@@ -48,7 +50,7 @@ require_once 'config/db.php';
             </div>
             <div class="mb-3">
                 <label for="img" class="col-form-label">Image:</label>
-                <input type="file" required class="form-control" id="imgInput" name="img">
+                <input type="file" class="form-control" id="imgInput" name="img">
                 <img width="100%" src="uploads/<?=$data['img']; ?>" id="previewImg" alt="">
             </div>
             <div class="modal-footer">
