@@ -1,5 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php 
-
     session_start();
     require_once 'config/db.php';
 
@@ -28,7 +29,18 @@
 
                     if ($sql) {
                         $_SESSION['success'] = "Data has been inserted successfully";
-                        header("location: index.php");
+                        echo "<script>
+                            $(document).ready(function() {
+                                Swal.fire({
+                                    title: 'success',
+                                    text: 'เพิ่มข้อมูลสำเร็จ',
+                                    icon: 'success',
+                                    timer: 3000,
+                                    showConfirmButton: false
+                                });
+                            });
+                        </script>";
+                        header("Refresh:2; url=index.php");
                     } else {
                         $_SESSION['error'] = "Data inserted failed";
                         header("location: index.php");
