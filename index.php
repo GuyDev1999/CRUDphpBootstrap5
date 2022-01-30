@@ -121,7 +121,7 @@
                     <th width="250px"><img width="75%"src="uploads/<?=$user['img']; ?>" class="rounded"></th>
                     <td>
                         <a href="edit.php?id=<?=$user['id']; ?>" class="btn btn-warning">Edit</a>
-                        <a href="?delete=<?=$user['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?');">Delete</a>
+                        <a data-id="<?=$user['id']; ?>" href="?delete=<?=$user['id']; ?>" class="btn btn-danger delete-btn">Delete</a>
                     </td>
                 </tr>
                 <?php } 
@@ -129,7 +129,9 @@
             </tbody>
         </table>
     </div>
-
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         let imgInput = document.getElementById('imgInput');
@@ -141,6 +143,47 @@
                 previewImg.src = URL.createObjectURL(file);
             }
         }
+
+        $('.delete-btn').click(function(e) {
+            var userId = $(this).data('id');
+            e.preventDefault();
+            deleteConfirm(userId);
+        })
+
+        function deleteConfirm(userId) {
+            Swal.fire({
+                title: 'คุณแน่ใจไหม?',
+                text: 'ถ้าลบแล้วจะไม่สามารถเรียกคืนได้อีก',
+                showCancelButton: true,
+                confirmButtonColor:  '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'แน่ใจ ฉันจะลบ!',
+                showLoaderOnConfirm: true,
+                preConfirm: function() {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                            url: 'index.php',
+                            type: 'get',
+                            data: 'delete=' + userId,
+                        })
+                        .done(function() {
+                            Swal.fire({
+                                title: 'ลบสำเร็จ',
+                                text: 'ลบข้อมูลสำเร็จแล้ว!',
+                                icon: 'success'
+                            }).then(() => {
+                                document.location.href = 'index.php';
+                            })
+                        })
+                        .fail(function() {
+                            Swal.fire('โอ้ไม่นะ..', 'เกิดข้อผิดพลาดบางอย่าง!', 'error');
+                            window.location.reload();
+                        })
+                    })
+                }
+            })
+        }
+
     </script>
 </body>
 </html>
